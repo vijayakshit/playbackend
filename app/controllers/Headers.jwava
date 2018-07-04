@@ -1,0 +1,15 @@
+
+import play.mvc.*;
+import java.util.concurrent.CompletableFuture;
+import play.mvc.Http.*;
+
+public class Headers extends Action {
+
+    // // @Override
+    // // public static <A> F.Promise<A> wrap(scala.concurrent.Future<A> future) 
+
+    // public CompletableFuture<SimpleResult> call(Http.Context ctx) throws Throwable {
+    //     ctx.response().setHeader("Access-Control-Allow-Origin", "*"); 
+    //     return delegate.call(ctx);
+    // }
+}
