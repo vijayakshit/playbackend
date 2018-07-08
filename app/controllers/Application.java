@@ -17,7 +17,7 @@ import play.mvc.Http.*;
 public class Application extends Controller {
 
 
-    //@Security.Authenticated(Secured.class)
+    @Security.Authenticated(Secured.class)
     public static Result index() {
 
         Context ctx = Context.current();
