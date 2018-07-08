@@ -34,7 +34,9 @@ public class Authentication extends Controller{
   
         response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", request().getHeader("Origin"));   
-        response().setHeader("origin", request().getHeader("Origin")); 
+        response().setHeader("origin", request().getHeader("Origin"));
+        response().setHeader("Access-Control-Max-Age", "3600");
+
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
         response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
