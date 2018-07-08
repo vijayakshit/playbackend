@@ -23,10 +23,20 @@ public class Authentication extends Controller{
     public static Result Login() {
         //Get the Context and JSON input
         Context ctx = Context.current();
+
+        ctx.session().put("loggedinstatbus", "true");
+
+
         JsonNode json = request().body().asJson();
         
         //GOFO response().setHeader("Access-Control-Allow-Origin", "*");
         //GOFO response().setHeader("Access-Control-Allow-Credentials", "true");
+  
+        response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
+        response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
+        response().setHeader("Access-Control-Allow-Credentials","true");
+        response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
 
         //Creating the response Object               
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
@@ -82,14 +92,16 @@ public class Authentication extends Controller{
 
 
             //Put The Session Cookies
-            ctx.session().clear();
+           // ctx.session().clear();
+             ctx.session().put("loggedinstatus", "true");
             ctx.session().put("loggedinstatus", "true");
             ctx.session().put("loggedinemail", "true");
             ctx.session().put("loggedinat", Long.toString(currentTimeStampMillis));
             ctx.session().put("loggedinvalidity", Long.toString(loginValidityTimeStampMillis));
             ctx.session().put("lastactivevalidity", Long.toString(lastActivityValidityTimeStampMillis));
+            
                  //TO Implement the rest of functionality reas this  https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
-            responseJson.put("status", "Login is a Success");
+            responseJson.put("status", "Login is a Succesds");
             return ok(Json.toJson(responseJson));
         }
     }
@@ -98,6 +110,12 @@ public class Authentication extends Controller{
         //Get the Context and JSON input
         Context ctx = Context.current();
         JsonNode json = request().body().asJson();
+
+         response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
+        response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
+        response().setHeader("Access-Control-Allow-Credentials","true");
+        response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
         
         //Creating the response Object               
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){

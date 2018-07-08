@@ -8,6 +8,7 @@ import java.time.temporal.ChronoUnit;
 public class AuthorizarionValidator {
   public static boolean validate(Context ctx) {
     //Check If login Cookie is present
+    System.out.println(ctx.session());
     if(ctx.session().get("loggedinstatus")  != null){
         System.out.println("Logged In is True");
         
