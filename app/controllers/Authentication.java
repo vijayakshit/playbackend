@@ -35,7 +35,7 @@ public class Authentication extends Controller{
         response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", request().getHeader("Origin"));   
         response().setHeader("origin", request().getHeader("Origin"));
-        response().setHeader("Access-Control-Max-Age", "3600");
+        response().setHeader("Access-Control-Max-Age", "36000");
 
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
@@ -103,7 +103,7 @@ public class Authentication extends Controller{
             ctx.session().put("lastactivevalidity", Long.toString(lastActivityValidityTimeStampMillis));
             
                  //TO Implement the rest of functionality reas this  https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
-            responseJson.put("status", "Login is a Succesds");
+            responseJson.put("status", "Login is ja Succesds");
             return ok(Json.toJson(responseJson));
         }
     }
