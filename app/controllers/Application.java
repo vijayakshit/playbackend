@@ -25,7 +25,7 @@ public class Application extends Controller {
         //GOFO response().setHeader("Access-Control-Allow-Origin", "*");
         //response().setHeader("Access-Control-Allow-Origin", "http://192.168.0.72:3000/");
         //response().setHeader("Access-Control-Allow-Origin", "http://batman.com:3000/','http://batman.com:3000/']");   
-        response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
+        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
@@ -44,7 +44,7 @@ public class Application extends Controller {
     }
 
     public static Result preflight() {
-        response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
+        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE, OPTIONS");
