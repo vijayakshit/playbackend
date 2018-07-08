@@ -29,7 +29,7 @@ public class Application extends Controller {
         response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
-        response().setHeader("Access-Control-Allow-Headers", "*");
+        response().setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
 
 
         
@@ -48,17 +48,8 @@ public class Application extends Controller {
         response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE, OPTIONS");
-        response().setHeader("Access-Control-Allow-Headers", "*");
-        //response().setHeader("Access-Control-Allow-Headers", "content-type, Accept, application/json, text/plain, */*");
-        return ok();
-    }
-    public static Result preflight2() {
-        response().setHeader("Access-Control-Allow-Origin", "batman.com");
-        response().setHeader("Allow", "batman.com");    
-        response().setHeader("Access-Control-Allow-Credentials","true");
-        response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
-        //response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
-        response().setHeader("Access-Control-Allow-Headers", "content-type, Accept, application/json, text/plain, */*");
+        //response().setHeader("Access-Control-Allow-Headers", "*");
+        response().setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
         return ok();
     }
 
