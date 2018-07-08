@@ -32,7 +32,7 @@ public class Authentication extends Controller{
         //GOFO response().setHeader("Access-Control-Allow-Origin", "*");
         //GOFO response().setHeader("Access-Control-Allow-Credentials", "true");
   
-        response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
+        response().setHeader("Access-Control-Allow-Origin", "akshitsbatman.herokuapp.com");
         response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
@@ -93,7 +93,6 @@ public class Authentication extends Controller{
 
             //Put The Session Cookies
            // ctx.session().clear();
-             ctx.session().put("loggedinstatus", "true");
             ctx.session().put("loggedinstatus", "true");
             ctx.session().put("loggedinemail", "true");
             ctx.session().put("loggedinat", Long.toString(currentTimeStampMillis));
@@ -111,7 +110,7 @@ public class Authentication extends Controller{
         Context ctx = Context.current();
         JsonNode json = request().body().asJson();
 
-         response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
+        response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
         response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
