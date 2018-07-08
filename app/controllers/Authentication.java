@@ -32,7 +32,7 @@ public class Authentication extends Controller{
         //GOFO response().setHeader("Access-Control-Allow-Origin", "*");
         //GOFO response().setHeader("Access-Control-Allow-Credentials", "true");
   
-        response().setHeader("Access-Control-Allow-Origin", "akshitsbatman.herokuapp.com");
+        response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
         response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
