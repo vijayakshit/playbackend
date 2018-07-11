@@ -21,15 +21,23 @@ public class Application extends Controller {
     public static Result index() {
 
         Context ctx = Context.current();
-        System.out.println(ctx.session());
+        System.out.println("get"+ctx.session());
         //GOFO response().setHeader("Access-Control-Allow-Origin", "*");
-        //response().setHeader("Access-Control-Allow-Origin", "http://192.168.0.72:3000/");
-        //response().setHeader("Access-Control-Allow-Origin", "http://batman.com:3000/','http://batman.com:3000/']");   
         response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
-        response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
+        response().setHeader("Allow", request().getHeader("Origin"));   
+        response().setHeader("Origin", request().getHeader("Origin"));
+        response().setHeader("Access-Control-Max-Age", "36000");
+
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
-        response().setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+        response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
+
+        //response().setHeader("Access-Control-Allow-Origin", "http://batman.com:3000/','http://batman.com:3000/']");   
+        // response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+        // response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
+        // response().setHeader("Access-Control-Allow-Credentials","true");
+        // response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        // response().setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
 
 
         
@@ -45,7 +53,7 @@ public class Application extends Controller {
 
     public static Result preflight() {
         response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
-        response().setHeader("Allow", "https://akshitsbatman.herokuapp.com");    
+        response().setHeader("Allow", "*");    
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE, OPTIONS");
         //response().setHeader("Access-Control-Allow-Headers", "*");

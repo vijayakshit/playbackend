@@ -33,7 +33,7 @@ public class Secured extends Security.Authenticator {
             return "valid";
 
         }
-        ctx.response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
+        // ctx.response().setHeader("Access-Control-Allow-Origin", "https://akshitsbatman.herokuapp.com");
         return null;
 
     }
