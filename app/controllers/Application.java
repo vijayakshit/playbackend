@@ -43,7 +43,9 @@ public class Application extends Controller {
         
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
-                put("status", "" );
+                put("loggedinvalidity", ctx.session().get("loggedinstatus"));
+                put("lastactivevalidity",ctx.session().get("lastactivevalidity"));
+            
             }
         };
         return ok(Json.toJson(responseJson));
