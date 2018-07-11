@@ -4,15 +4,16 @@ import play.mvc.Http.*;
 import play.mvc.Controller;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import play.Application.*;
+
 
 public class AuthorizarionValidator {
   public static boolean validate(Context ctx) {
     //Check If login Cookie is present
     System.out.println(ctx.session());
-    if(ctx.session().get("loggedinstatus")  != null){
-        System.out.println("Logged In is True");
+    if(ctx.session().get("loggedinstatus")!=null){
         
-        //Check if expiration time has been met
+      //Check if expiration time has been met
          long loginValidityTimeStampMillis =  Long.parseLong(ctx.session().get("loggedinvalidity") );
          long lastActivityValidityTimeStampMillis =  Long.parseLong(ctx.session().get("lastactivevalidity") );
          
@@ -30,29 +31,23 @@ public class AuthorizarionValidator {
             invalidateSession(ctx);
             return false;  
          }
-
-        
-        //if(ctx.session().get("loggedinstatus"))
-        
         return true;
     }
+
+    //If Login Cookie is Present
     invalidateSession(ctx);
     return false;  
   }
 
   private static void invalidateSession(Context ctx){
-    ctx.session().remove("loggedinstatus");
-    ctx.session().remove("loggedinemail");
-    ctx.session().remove("loggedinat");
-    ctx.session().remove("loggedinvalidity");
-    ctx.session().remove("lastactivevalidity");
     ctx.session().clear();
   }
 
 
   public static void activityAuthorizationExtender(Context ctx) {
     
-    Instant lastActivityValidityInstant = Instant.now().plus(1, ChronoUnit.MINUTES);
+    long INACTIVITY_TIMEOUT_IN_MINUTES = Long.parseLong(play.Play.application().configuration().getString("timeoutconfig.INACTIVITY_TIMEOUT_IN_MINUTES"));            
+    Instant lastActivityValidityInstant = Instant.now().plus(INACTIVITY_TIMEOUT_IN_MINUTES, ChronoUnit.MINUTES);
     long lastActivityValidityTimeStampMillis = lastActivityValidityInstant.toEpochMilli();
     ctx.session().put("lastactivevalidity",Long.toString(lastActivityValidityTimeStampMillis));
   }
