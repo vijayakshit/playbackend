@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 import views.html.*;
 import play.mvc.With;
+import java.time.Instant;
 
 import models.User;
 import play.mvc.Http.*;
@@ -39,12 +40,16 @@ public class Application extends Controller {
         // response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
         // response().setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
 
+        Instant currentInstant = Instant.now();
+        long currentTimeStampMillis = currentInstant.toEpochMilli();
 
-        
+        long loggedinvalidity =  Long.parseLong(ctx.session().get("loggedinvalidity"));
+        long lastactivevalidity =  Long.parseLong(ctx.session().get("lastactivevalidity"));
+
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
-                put("loggedinvalidity", ctx.session().get("loggedinstatus"));
-                put("lastactivevalidity",ctx.session().get("lastactivevalidity"));
+                put("loggedinvalidity", loggedinvalidity-currentTimeStampMillis);
+                put("lastactivevalidity",lastactivevalidity-currentTimeStampMillis);
             
             }
         };
