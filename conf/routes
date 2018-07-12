@@ -8,6 +8,7 @@ OPTIONS /login                               controllers.Application.preflight()
 # Home page
 GET     /getit                            controllers.Application.index()
 
+POST    /api/dummy                        controllers.Game.Dummy()
 
 #Login Route
 POST    /login                           controllers.Authentication.Login()
