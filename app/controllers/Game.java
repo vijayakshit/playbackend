@@ -41,10 +41,7 @@ public class Game extends Controller{
         };
 
         //Respond with Bad Request if Json is not found
-        if(json == null) {
-            responseJson.put("status", "Expecting Json data");
-            return badRequest(Json.toJson(responseJson));
-        }
+
         
         
             //TO Implement the keep me signed in and the rest of functionality explore this  https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
