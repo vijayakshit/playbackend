@@ -94,6 +94,8 @@ public class HuntController extends Controller {
         };
 
         List<HashMap> leaderboard = new ArrayList<HashMap>();
+        leaderboard.add(playerOne);
+        leaderboard.add(playerTwo);
 
         HashMap<String, List<HashMap>> responseJson = new HashMap<String, List<HashMap>>(){
             {
