@@ -51,7 +51,7 @@ public class HuntController extends Controller {
             for (JsonNode option : optionsNode){
                 options.add(option.textValue());
             }
-            Integer answerIndex = Integer.parseInt(questionNode.findPath("questiontext").textValue());
+            Integer answerIndex = Integer.parseInt(questionNode.findPath("answerindex").textValue());
             
             Question question = new Question(questionText, options, answerIndex);
             questionsList.add(question);
