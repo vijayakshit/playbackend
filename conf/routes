@@ -12,7 +12,7 @@ GET     /getit                            controllers.Application.index()
 
 #
 POST    /api/createhunt                  controllers.HuntController.createNewHunt()
-#GET     /api/gethuntleaderboard          controllers.HuntControllers.HuntController.getHuntLeaderboard()
+GET     /api/gethuntleaderboard          controllers.HuntController.getHuntLeaderboard()
 
 
 #GET     /api/getregisteredhunts          controllers.HuntControllers.HuntUser.getregisteredhunts()

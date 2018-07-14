@@ -65,16 +65,57 @@ public class HuntController extends Controller {
 
         System.out.println(newHunt);
         
-        // Object questions = json.findPath("questions")
+ 
 
-        // if(username == null||password == null) {
-        //     responseJson.put("status", "Missing username or password");
-        //     return badRequest(Json.toJson(responseJson));
-        // }
-
-
+       // play clean compile &  git add . & git commit -m "Added Dummy Route" & git push heroku
 
 
         return ok(Json.toJson(responseJson));
     }
+
+    public static Result getHuntLeaderboard() {
+
+        Context ctx = Context.current();
+    
+        HashMap<String, Object> playerOne = new HashMap<String, Object>(){
+            {
+                put("position", "1");
+                put("hunter","Akshit");
+                put("score","4");
+            }
+        };
+        
+        HashMap<String, Object> playerTwo = new HashMap<String, Object>(){
+            {
+                put("position", "2");
+                put("hunter","Ujjwal");
+                put("score","3");
+            }
+        };
+
+        List<HashMap> leaderboard = new ArrayList<HashMap>();
+
+        HashMap<String, List<HashMap>> responseJson = new HashMap<String, List<HashMap>>(){
+            {
+                put("leaderboard",leaderboard );
+                
+            
+            }
+        };
+
+
+        
+
+      
+        
+ 
+
+       // play clean compile &  git add . & git commit -m "Added Dummy Route" & git push heroku
+
+
+        return ok(Json.toJson(responseJson));
+    }
+
+
+
 }
