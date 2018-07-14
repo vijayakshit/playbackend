@@ -49,11 +49,12 @@ public class HuntController extends Controller {
             List<String> options = new ArrayList<String>();
             JsonNode optionsNode = questionNode.get("options");
             for (JsonNode option : optionsNode){
-                System.out.println(option);
+                options.add(option.textValue());
             }
-            Integer answerIndex = Integer.parseInt(questionNode.findPath("answerindex").textValue());
             
-            Question question = new Question(questionText, options, answerIndex);
+            //Integer answerIndex = Integer.parseInt(questionNode.findPath("answerindex").textValue());
+            
+            Question question = new Question(questionText, options, 1);
             questionsList.add(question);
         }
 
