@@ -8,7 +8,19 @@ OPTIONS /login                               controllers.Application.preflight()
 # Home page
 GET     /getit                            controllers.Application.index()
 
-GET    /api/dummy                        controllers.Game.Dummy()
+
+
+#
+POST    /api/createhunt                  controllers.HuntController.createNewHunt()
+#GET     /api/gethuntleaderboard          controllers.HuntControllers.HuntController.getHuntLeaderboard()
+
+
+#GET     /api/getregisteredhunts          controllers.HuntControllers.HuntUser.getregisteredhunts()
+#GET     /api/getunregisteredhunts        controllers.HuntControllers.HuntUser.getunregisteredhunts()
+#POST    /api/registerforhunt             controllers.HuntControllers.HuntUser.registerforhunt()
+#GET     /api/gethuntforuser              controllers.HuntControllers.HuntUser.gethuntforuser()
+#POST    /api/updateuserprogress          controllers.HuntControllers.HuntUser.updateuserprogress()
+
 
 #Login Route
 POST    /login                           controllers.Authentication.Login()
