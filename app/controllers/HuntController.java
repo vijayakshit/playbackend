@@ -12,7 +12,8 @@ import java.time.Instant;
 import models.User;
 import play.mvc.Http.*;
 import com.fasterxml.jackson.databind.JsonNode;
-
+import java.util.List;
+import java.util.ArrayList;
 
 
 public class HuntController extends Controller {
@@ -26,7 +27,7 @@ public class HuntController extends Controller {
     
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
-                put("loggedinvalidity", 0);
+                put("loggedinvalidity", "cool");
                 put("lastactivevalidity",0);
             
             }
@@ -39,7 +40,17 @@ public class HuntController extends Controller {
         
         //Respond with Bad Request if username/password is not found
         String huntname = payload.findPath("huntname").textValue();
-        System.out.println(payload);
+        
+        JsonNode searchResultsNode = payload.get("questions");
+        
+        for (Object strTemp : searchResultsNode){
+
+            System.out.println(strTemp);
+            
+            }
+
+        System.out.println(huntname);
+        
         // Object questions = json.findPath("questions")
 
         // if(username == null||password == null) {
