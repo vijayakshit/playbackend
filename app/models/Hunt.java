@@ -24,12 +24,11 @@ public class Hunt {
     }
 
 
-    public void createHunt(String huntname,List<Question> questions){
-        Hunt newHunt = new Hunt( huntname, questions);
-        System.out.println("Creating and Saving hunt:");
-        System.out.println(newHunt);
-        //newHunt.save();
-    }
+    // public void createHunt(String huntname,List<Question> questions){
+    //     Hunt newHunt = new Hunt( huntname, questions);
+        
+    //     //newHunt.save();
+    // }
 
 
 

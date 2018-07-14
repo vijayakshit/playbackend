@@ -42,9 +42,13 @@ public class HuntController extends Controller {
         String huntname = payload.findPath("huntname").textValue();
         JsonNode questionsNode = payload.get("questions");
         
+        
         List<Question> questionsList = new ArrayList<Question>();
         for (JsonNode questionNode : questionsNode){
+
             //System.out.println(question);
+            Integer answerIndex = Integer.parseInt(questionNode.get("answerindex").asText());
+           
             String questionText = questionNode.findPath("questiontext").textValue();
             List<String> options = new ArrayList<String>();
             JsonNode optionsNode = questionNode.get("options");
@@ -52,7 +56,6 @@ public class HuntController extends Controller {
                 options.add(option.textValue());
             }
             
-            //Integer answerIndex = Integer.parseInt(questionNode.findPath("answerindex").textValue());
             
             Question question = new Question(questionText, options, 1);
             questionsList.add(question);
@@ -60,7 +63,7 @@ public class HuntController extends Controller {
 
         Hunt newHunt = new Hunt(huntname, questionsList);
 
-        //System.out.println(huntname);
+        System.out.println(newHunt);
         
         // Object questions = json.findPath("questions")
 
