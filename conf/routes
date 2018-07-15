@@ -5,6 +5,9 @@ OPTIONS /getit                               controllers.Application.preflight()
 
 OPTIONS /login                               controllers.Application.preflight()
 
+
+
+GET     /isauth                           controllers.Authentication.isauth()
 # Home page
 GET     /getit                            controllers.Application.index()
 

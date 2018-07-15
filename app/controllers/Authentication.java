@@ -128,4 +128,8 @@ public class Authentication extends Controller{
         responseJson.put("status", "Logout is a Sucess");
         return ok(Json.toJson(responseJson));   
     }
+
+    public static Result isauth(){
+        return ok(); 
+    }
 }
