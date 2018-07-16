@@ -45,7 +45,7 @@ public class HuntController extends Controller {
         JsonNode questionsNode = payload.get("questions");
         
         
-        List<Question> questionsList = new ArrayList<Question>();
+        List<String> questionIdList = new ArrayList<String>();
         for (JsonNode questionNode : questionsNode){
 
             //System.out.println(question);
@@ -59,17 +59,18 @@ public class HuntController extends Controller {
             }
             
             
-            Question question = new Question(questionText, options, 1);
-            questionsList.add(question);
+            String questionid = Question.createQuestion(questionText, options, answerIndex);
+            questionIdList.add(questionid);
         }
        
         //Hunt newHunt = new Hunt(huntname, questionsList);
-        Hunt.createHunt(huntname, questionsList);
+        System.out.println(Hunt.createHunt(huntname, questionIdList));
 
         
         
         java.util.List<models.Hunt> hunts = new play.db.ebean.Model.Finder(String.class, models.Hunt.class).all();
         System.out.println(hunts);
+
        // play clean compile &  git add . & git commit -m "Added Dummy Route" & git push heroku
 
 

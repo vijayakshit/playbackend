@@ -18,16 +18,17 @@ public class Question extends Model{
     
     public Question(String questionText, List<String> options, Integer answerIndex){
         
-        this.questionId = UUID.randomUUID().toString();
+        this.questionId = "QUES_"+UUID.randomUUID().toString();
         this.questionText = questionText;
         this.options = options;
         this.answerIndex = answerIndex;
     }
 
-    public void createQuestion(String questionText, List<String> options, Integer answerIndex){
+    public static String createQuestion(String questionText, List<String> options, Integer answerIndex){
         Question newQuestion = new Question( questionText, options, answerIndex);
         System.out.println("Adding a Question:");
         System.out.println(newQuestion);
+        return newQuestion.questionId;
     }
 
     

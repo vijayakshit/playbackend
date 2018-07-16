@@ -16,23 +16,25 @@ public class Hunt extends Model{
 	public String huntname;
     //public List<Hunter> hunters;
     public Integer noOfQuestions;
-    public List<Question> huntquestions;
+    public List<String> questionIds;
     
-    public Hunt(String huntname,List<Question> questions ){
+    public Hunt(String huntname,List<String> questionIds ){
         
-        this.huntid = UUID.randomUUID().toString();
+        this.huntid = "HUNT_"+UUID.randomUUID().toString();
         this.huntname = huntname;
         //this.hunters = new ArrayList<Hunter>();
         //this.noOfQuestions = questions.length;
-        this.huntquestions = questions;
+        this.questionIds = questionIds;
         
     }
 
 
-    public static void createHunt(String huntname,List<Question> questions){
-         Hunt newHunt = new Hunt( huntname, questions);
+    public static String createHunt(String huntname,List<String> questionIds){
+         Hunt newHunt = new Hunt( huntname, questionIds);
          System.out.println(newHunt);
+
          newHunt.save();
+         return newHunt.huntid;
      }
 
 
