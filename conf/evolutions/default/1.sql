@@ -6,14 +6,15 @@
 create table hunt (
   huntid                    varchar(255) not null,
   huntname                  varchar(255),
-  no_of_questions           integer,
   constraint pk_hunt primary key (huntid))
 ;
 
 create table question (
   question_id               varchar(255) not null,
   question_text             varchar(255),
+  options                   varchar(255),
   answer_index              integer,
+  hunt_id                   varchar(255),
   constraint pk_question primary key (question_id))
 ;
 

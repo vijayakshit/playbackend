@@ -11,23 +11,35 @@ public class Question extends Model{
 
     @Id
 	public String questionId;
-	public String questionText;
-    public List<String> options;
+    public String questionText;
+    
+    public String options;
     public Integer answerIndex;
+    public String huntId;
     
-    
-    public Question(String questionText, List<String> options, Integer answerIndex){
+    public Question(String questionText, String options, Integer answerIndex,String huntId){
         
         this.questionId = "QUES_"+UUID.randomUUID().toString();
         this.questionText = questionText;
         this.options = options;
         this.answerIndex = answerIndex;
+        this.huntId = huntId;
     }
 
-    public static String createQuestion(String questionText, List<String> options, Integer answerIndex){
-        Question newQuestion = new Question( questionText, options, answerIndex);
-        System.out.println("Adding a Question:");
-        System.out.println(newQuestion);
+    public static String createQuestion(String questionText, List<String> options, Integer answerIndex,String huntId){
+        
+        String allOptions = "";
+
+        
+        for (String option : options){
+            allOptions = allOptions + "," +option;
+        }
+        allOptions = allOptions.substring(1);
+
+        Question newQuestion = new Question( questionText, allOptions, answerIndex,huntId);
+        newQuestion.save();
+
+
         return newQuestion.questionId;
     }
 
