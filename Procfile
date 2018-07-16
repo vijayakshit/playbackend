@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/alfredo -Dhttp.port=$PORT
+web: target/universal/stage/bin/alfredo -Dhttp.port=$PORT -DapplyEvolutions.default=true -Ddb.default.driver=org.postgresql.Driver -Ddb.default.url=$DATABASE_URL

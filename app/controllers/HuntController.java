@@ -14,6 +14,8 @@ import play.mvc.Http.*;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.List;
 import java.util.ArrayList;
+import javax.persistence.*;
+import play.db.ebean.Model;
 
 
 public class HuntController extends Controller {
@@ -60,17 +62,18 @@ public class HuntController extends Controller {
             Question question = new Question(questionText, options, 1);
             questionsList.add(question);
         }
+       
+        //Hunt newHunt = new Hunt(huntname, questionsList);
+        Hunt.createHunt(huntname, questionsList);
 
-        Hunt newHunt = new Hunt(huntname, questionsList);
-
-        System.out.println(newHunt);
         
- 
-
+        
+        java.util.List<models.Hunt> hunts = new play.db.ebean.Model.Finder(String.class, models.Hunt.class).all();
+        System.out.println(hunts);
        // play clean compile &  git add . & git commit -m "Added Dummy Route" & git push heroku
 
 
-        return ok(Json.toJson(responseJson));
+        return ok(Json.toJson(hunts));
     }
 
     public static Result getHuntLeaderboard() {
