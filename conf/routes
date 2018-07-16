@@ -22,7 +22,9 @@ GET     /api/gethuntleaderboard          controllers.HuntController.getHuntLeade
 #GET     /api/getunregisteredhunts        controllers.HuntControllers.HuntUser.getunregisteredhunts()
 #POST    /api/registerforhunt             controllers.HuntControllers.HuntUser.registerforhunt()
 #GET     /api/gethuntforuser              controllers.HuntControllers.HuntUser.gethuntforuser()
-#POST    /api/updateuserprogress          controllers.HuntControllers.HuntUser.updateuserprogress()
+
+
+#POST  test  /api/updateuserprogress          controllers.HuntControllers.HuntUser.updateuserprogress()
 
 
 #Login Route
