@@ -18,13 +18,11 @@ POST    /api/createhunt                  controllers.HuntController.createNewHun
 GET     /api/gethuntleaderboard          controllers.HuntController.getHuntLeaderboard()
 
 
-#GET     /api/getregisteredhunts          controllers.HuntControllers.HuntUser.getregisteredhunts()
-#GET     /api/getunregisteredhunts        controllers.HuntControllers.HuntUser.getunregisteredhunts()
-#POST    /api/registerforhunt             controllers.HuntControllers.HuntUser.registerforhunt()
-#GET     /api/gethuntforuser              controllers.HuntControllers.HuntUser.gethuntforuser()
-
-
-#POST  test  /api/updateuserprogress          controllers.HuntControllers.HuntUser.updateuserprogress()
+POST     /api/createHunter                                        controllers.HunterController.createHunter()
+GET     /api/gethuntsforhunter/:hunterid                          controllers.HunterController.getHuntsForHunter(hunterid)
+POST    /api/registerforhunt/:hunterid/:huntid                    controllers.HunterController.registerForHunt(hunterid,huntid)
+GET     /api/gethuntforhunter/:hunterid/:huntid/:progressid       controllers.HunterController.getHuntForHunter(hunterid,huntid,progressid)
+POST     /api/updateuserprogress/:progressid/:index/:score        controllers.HunterController.updateScore(progressid,index:Integer,score)
 
 
 #Login Route

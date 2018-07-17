@@ -16,12 +16,11 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.persistence.*;
 import play.db.ebean.Model;
+import utils.*;
 
 
 public class HuntController extends Controller {
-
-
-    
+   
     public static Result createNewHunt() {
 
         Context ctx = Context.current();
@@ -29,9 +28,7 @@ public class HuntController extends Controller {
     
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
-                put("loggedinvalidity", "cool");
-                put("lastactivevalidity",0);
-            
+                put("status", "Not Done");
             }
         };
 
@@ -44,12 +41,10 @@ public class HuntController extends Controller {
         String huntname = payload.findPath("huntname").textValue();
         JsonNode questionsNode = payload.get("questions");
         
-        
         String huntId = Hunt.createHunt(huntname);
         
         List<String> questionIdList = new ArrayList<String>();
         for (JsonNode questionNode : questionsNode){
-
             //System.out.println(question);
             Integer answerIndex = Integer.parseInt(questionNode.get("answerindex").asText());
            
@@ -59,28 +54,13 @@ public class HuntController extends Controller {
             for (JsonNode option : optionsNode){
                 options.add(option.textValue());
             }
-            
-            
             String questionid = Question.createQuestion(questionText, options, answerIndex,huntId);
             questionIdList.add(questionid);
         }
-       
-        //Hunt newHunt = new Hunt(huntname, questionsList);
-        
 
-        
-        
-        java.util.List<models.Hunt> hunts = new play.db.ebean.Model.Finder(String.class, models.Hunt.class).all();
-        java.util.List<models.Question> questions = new play.db.ebean.Model.Finder(String.class, models.Question.class).all();
-       
-        System.out.println(hunts);
+        responseJson.put("huntid",huntId);
 
-       // play clean compile &  git add . & git commit -m "Added Dummy Route" & git push heroku
-
-        System.out.println(questionIdList);
-        System.out.println(hunts);
-
-        return ok(Json.toJson(questions));
+        return ok(Json.toJson(responseJson));
     }
 
     public static Result getHuntLeaderboard() {
@@ -94,7 +74,7 @@ public class HuntController extends Controller {
                 put("score","4");
             }
         };
-        
+
         HashMap<String, Object> playerTwo = new HashMap<String, Object>(){
             {
                 put("position", "2");
@@ -110,8 +90,6 @@ public class HuntController extends Controller {
         HashMap<String, List<HashMap>> responseJson = new HashMap<String, List<HashMap>>(){
             {
                 put("leaderboard",leaderboard );
-                
-            
             }
         };
 
@@ -128,6 +106,7 @@ public class HuntController extends Controller {
         return ok(Json.toJson(responseJson));
     }
 
+    
 
 
 }

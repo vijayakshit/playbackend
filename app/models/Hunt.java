@@ -5,39 +5,46 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
 import javax.persistence.*;
-import play.db.ebean.Model;
+import utils.*;
+import play.db.ebean.*;
 
 @Entity
 public class Hunt extends Model{
 
     @Id
     public String huntid;
+    public String huntname;
+    public static Finder<String,Hunt> find = new Finder<String,Hunt>(
+        String.class, Hunt.class
+    );
     
-	public String huntname;
-    //public List<Hunter> hunters;
     
-   
-    //public List<String> questionIds;
-    
-    public Hunt(String huntname ){
-        
+    public Hunt(String huntname ){       
         this.huntid = "HUNT_"+UUID.randomUUID().toString();
-        this.huntname = huntname;
-        //this.hunters = new ArrayList<Hunter>();
-        //this.noOfQuestions = questions.length;
-        //this.questionIds = questionIds;
-        
+        this.huntname = huntname;        
     }
-
 
     public static String createHunt(String huntname){
          Hunt newHunt = new Hunt( huntname);
          System.out.println(newHunt);
-
          newHunt.save();
          return newHunt.huntid;
      }
 
+    public static List<String> getAllHuntIds(){ 
+        List<Hunt> allHunts = Hunt.find.all();
+        List<String> allHuntIds = new ArrayList<String>();
 
+        for(Hunt hunt:allHunts){
+            allHuntIds.add(hunt.huntid);
+        }
+        return allHuntIds;
+    }
 
+    public static Hunt getHunt(String huntId){ 
+        Hunt thisHunt = Hunt.find.byId(huntId);
+        return thisHunt;
+    }
+
+    
 }
