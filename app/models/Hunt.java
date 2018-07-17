@@ -28,6 +28,7 @@ public class Hunt extends Model{
          Hunt newHunt = new Hunt( huntname);
          System.out.println(newHunt);
          newHunt.save();
+         System.out.println(newHunt.huntid);
          return newHunt.huntid;
      }
 
