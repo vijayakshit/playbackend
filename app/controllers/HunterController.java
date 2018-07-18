@@ -61,6 +61,7 @@ public class HunterController extends Controller {
 
         return ok(Json.toJson(responseJson));
     }
+    //TO DO Get this Right Sunscrobed un scubscribed buckets are wrong
 
     public static Result getHuntsForHunter(String hunterId) {
 
@@ -128,6 +129,7 @@ public class HunterController extends Controller {
         return ok(Json.toJson(responseJson));
     }
         
+    //TO DO Get this Right
     public static Result getHuntForHunter(String hunterId,String huntId, String progressId) {
         Context ctx = Context.current();
 

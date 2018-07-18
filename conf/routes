@@ -15,13 +15,21 @@ GET     /getit                            controllers.Application.index()
 
 #
 POST    /api/createhunt                  controllers.HuntController.createNewHunt()
+
+#Need To Work on this Dummy Data
 GET     /api/gethuntleaderboard          controllers.HuntController.getHuntLeaderboard()
 
 
 POST     /api/createHunter                                        controllers.HunterController.createHunter()
+
+#Crashes On Emply Registy
 GET     /api/gethuntsforhunter/:hunterid                          controllers.HunterController.getHuntsForHunter(hunterid)
+#Respomse Doesnt have Correct differentiation of huntids
 POST    /api/registerforhunt/:hunterid/:huntid                    controllers.HunterController.registerForHunt(hunterid,huntid)
+
 GET     /api/gethuntforhunter/:hunterid/:huntid/:progressid       controllers.HunterController.getHuntForHunter(hunterid,huntid,progressid)
+
+#Score Strings Need to be looked into
 POST     /api/updateuserprogress/:progressid/:index/:score        controllers.HunterController.updateScore(progressid,index:Integer,score)
 
 

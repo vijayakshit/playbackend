@@ -28,7 +28,7 @@ public class HuntController extends Controller {
     
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
-                put("status", "Not Done");
+                put("huntid", "Not Created");
             }
         };
 
@@ -106,7 +106,7 @@ public class HuntController extends Controller {
         return ok(Json.toJson(responseJson));
     }
 
-    
+
 
 
 }

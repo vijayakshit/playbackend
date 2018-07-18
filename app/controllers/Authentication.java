@@ -97,7 +97,7 @@ public class Authentication extends Controller{
             
 
              //TO Implement the keep me signed in and the rest of functionality explore this  https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
-            responseJson.put("status", "Login is a Success");
+            responseJson.put("username", "Akshit");
             return ok(Json.toJson(responseJson));
         }
     }
