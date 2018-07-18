@@ -95,6 +95,7 @@ public class Authentication extends Controller{
             ctx.session().put("loggedinvalidity", Long.toString(loginValidityTimeStampMillis));
             ctx.session().put("lastactivevalidity", Long.toString(lastActivityValidityTimeStampMillis));
             
+            System.out.println(ctx);
 
              //TO Implement the keep me signed in and the rest of functionality explore this  https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
             responseJson.put("username", "Akshit");
