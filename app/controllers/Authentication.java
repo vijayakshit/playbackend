@@ -14,8 +14,15 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import play.mvc.With;
 import play.Application.*;
-
 import controllers.*;
+import play.*;
+import play.mvc.*;
+import play.mvc.Result;
+import play.mvc.With;
+
+
+
+
 
 public class Authentication extends Controller{
 
@@ -92,13 +99,15 @@ public class Authentication extends Controller{
 
             //Put The Session Cookies
             ctx.session().put("loggedinstatus", "true");
+            ctx.session().put("user", username);
             ctx.session().put("loggedinvalidity", Long.toString(loginValidityTimeStampMillis));
             ctx.session().put("lastactivevalidity", Long.toString(lastActivityValidityTimeStampMillis));
             
             System.out.println(ctx.session());
+            responseJson.put("status", "Login Is A Success");
+            responseJson.put("user", username);
 
              //TO Implement the keep me signed in and the rest of functionality explore this  https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies
-            responseJson.put("username", "Akshit");
             return ok(Json.toJson(responseJson));
         }
     }
@@ -116,21 +125,38 @@ public class Authentication extends Controller{
             }
         };
 
-        //Clear the Session cookies
-        ctx.session().clear();
+
 
         //If already logged out Respond Accordingly
         if(ctx.session().get("loggedinstatus") == null){
             ctx.session().clear();
             responseJson.put("status", "Already Logged Out");
             return badRequest(Json.toJson(responseJson));
+
         } 
         //Else
+        //Clear the Session cookies
+        ctx.session().clear();
         responseJson.put("status", "Logout is a Sucess");
         return ok(Json.toJson(responseJson));   
     }
 
+    @Security.Authenticated(Secured.class)
     public static Result isauth(){
-        return ok(); 
+
+        Context ctx = Context.current();
+        String user = ctx.session().get("user");
+        // if(ctx.session().get("loggedinstatus") == null){
+        //     ctx.session().clear();
+        //     responseJson.put("status", "Already Logged Out");
+        //     return badRequest(Json.toJson(responseJson));
+        // } 
+        HashMap<String, Object> responseJson = new HashMap<String, Object>(){
+            {
+                put("user", user );
+            }
+        };
+        System.out.println(ctx.session());
+        return ok(Json.toJson(responseJson)); 
     }
-}
+} 
