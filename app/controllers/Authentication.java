@@ -8,6 +8,7 @@ import play.libs.Json;
 import java.util.HashMap;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.mvc.Http.*;
+import utils.AuthorizarionValidator;
 import play.mvc.Http;
 import java.util.Optional;
 import java.time.Instant;
@@ -63,10 +64,13 @@ public class Authentication extends Controller{
         } 
 
         //Respond with Bad Request if username/password is not found
-        if(ctx.session().get("loggedinstatus")  != null)    
+        if(AuthorizarionValidator.validate(ctx))    
         {
+
             responseJson.put("status", "Already Logged In");
             return badRequest(Json.toJson(responseJson));
+            
+           
         }
        
         //Authenticate the Login attempt
@@ -155,7 +159,7 @@ public class Authentication extends Controller{
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
         response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
-        
+
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
                 put("user", user );
