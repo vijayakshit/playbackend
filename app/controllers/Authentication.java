@@ -138,19 +138,23 @@ public class Authentication extends Controller{
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
         response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
-
+            
+        ctx.session().put("loggedinstatus", "false");
+        ctx.session().put("user", null);
+        ctx.session().put("loggedinvalidity", "0");
+        ctx.session().put("lastactivevalidity","0");
 
         //If already logged out Respond Accordingly
-        if(!AuthorizarionValidator.validate(ctx)){
-            session().clear();
-            System.out.println(ctx.session());
-            responseJson.put("status", "Already Logged Out");
-            return ok(Json.toJson(responseJson));
+        // if(!AuthorizarionValidator.validate(ctx)){
+        //     session().clear();
+        //     System.out.println(ctx.session());
+        //     responseJson.put("status", "Already Logged Out");
+        //     return ok(Json.toJson(responseJson));
 
-        } 
+        // } 
         //Else
         //Clear the Session cookies
-        session().clear();
+        
         responseJson.put("status", "Logout is a Sucess");
         System.out.println(ctx.session());
         return ok(Json.toJson(responseJson));   
