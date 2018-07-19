@@ -139,7 +139,7 @@ public class Authentication extends Controller{
         response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
             
         session().put("loggedinstatus", "false");
-        session().put("user", null);
+        session().DELETE("loggedinstatus");
         session().put("loggedinvalidity", "0");
         session().put("lastactivevalidity","0");
 
@@ -155,6 +155,7 @@ public class Authentication extends Controller{
         //Clear the Session cookies
         
         responseJson.put("status", "Logout is a Sucess");
+        System.out.println(ctx.session());
         //System.out.println(session());
         return ok(Json.toJson(responseJson));   
     }
