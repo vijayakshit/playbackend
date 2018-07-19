@@ -131,7 +131,7 @@ public class Authentication extends Controller{
             }
         };
 
-        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", request().getHeader("Origin"));   
         response().setHeader("Origin", request().getHeader("Origin"));
         response().setHeader("Access-Control-Max-Age", "36000");
@@ -189,6 +189,6 @@ public class Authentication extends Controller{
 
         
         System.out.println(ctx.session());
-        return unAuthorized(Json.toJson(responseJson)); 
+        return unauthorized((Json.toJson(responseJson)); 
     }
 } 
