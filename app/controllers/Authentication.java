@@ -155,7 +155,7 @@ public class Authentication extends Controller{
         //Clear the Session cookies
         
         responseJson.put("status", "Logout is a Sucess");
-        System.out.println(session());
+        //System.out.println(session());
         return ok(Json.toJson(responseJson));   
     }
 
