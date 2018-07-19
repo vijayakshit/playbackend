@@ -17,6 +17,14 @@ import java.util.ArrayList;
 import javax.persistence.*;
 import play.db.ebean.Model;
 import utils.*;
+import controllers.Secured;
+import java.io.FileReader;
+import java.io.File;
+import org.apache.commons.io.FileUtils;
+
+//import org.json.JSONObject;
+
+
 
 
 public class HuntController extends Controller {
@@ -63,7 +71,8 @@ public class HuntController extends Controller {
         return ok(Json.toJson(responseJson));
     }
 
-    public static Result getHuntLeaderboard() {
+    @Security.Authenticated(Secured.class)
+    public static Result getHuntLeaderboard(String huntId) {
 
         Context ctx = Context.current();
     
@@ -105,6 +114,61 @@ public class HuntController extends Controller {
 
         return ok(Json.toJson(responseJson));
     }
+
+    //@Security.Authenticated(Secured.class)
+    public static Result getAllHuntLeaderboard() {
+
+        Context ctx = Context.current();
+
+
+
+        // HashMap<String, Object> playerOne = new HashMap<String, Object>(){
+        //     {
+        //         put("position", "1");
+        //         put("hunter","Akshit");
+        //         put("score","4");
+        //     }
+        // };
+
+        // HashMap<String, Object> playerTwo = new HashMap<String, Object>(){
+        //     {
+        //         put("position", "2");
+        //         put("hunter","Ujjwal");
+        //         put("score","3");
+        //     }
+        // };
+
+        // List<HashMap> leaderboard = new ArrayList<HashMap>();
+        // leaderboard.add(playerOne);
+        // leaderboard.add(playerTwo);
+
+        // HashMap<String, List<HashMap>> responseJson = new HashMap<String, List<HashMap>>(){
+        //     {
+        //         put("listofhunts",leaderboard );
+        //         put("leaderboarddata",leaderboard );
+        //         put("selectedhunt",leaderboard );
+        //         put("selectedhuntdata",leaderboard );
+                
+        //     }
+        // };
+
+        //JSONObject objectFromJsonFile = (JSONObject) parser.parse(new FileReader("dummy.json"));
+        //JsonNode objectFromJsonFile = (JsonNode) Json.parse(new FileReader("dummy.json"));
+        
+        try {
+            String fileInString = FileUtils.readFileToString(new File("dummy.txt"));
+            JsonNode objectFromJsonFile = (JsonNode) Json.parse(fileInString);
+            return ok(Json.toJson(objectFromJsonFile));
+
+          } catch (Exception e) {
+
+             e.printStackTrace();
+         }
+
+        return ok();
+
+    }
+
 
 
 

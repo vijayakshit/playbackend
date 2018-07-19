@@ -19,7 +19,10 @@ GET     /getit                            controllers.Application.index()
 POST    /api/createhunt                  controllers.HuntController.createNewHunt()
 
 #Need To Work on this Dummy Data
-GET     /api/gethuntleaderboard          controllers.HuntController.getHuntLeaderboard()
+GET     /api/gethuntleaderboard/:huntid                           controllers.HuntController.getHuntLeaderboard(huntid)
+
+#Need To Create + Work On Dummy Data
+GET     /api/getallhuntleaderboard                                controllers.HuntController.getAllHuntLeaderboard()
 
 
 POST     /api/createHunter                                        controllers.HunterController.createHunter()
