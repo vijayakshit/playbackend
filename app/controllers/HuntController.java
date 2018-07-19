@@ -156,7 +156,7 @@ public class HuntController extends Controller {
         //JsonNode objectFromJsonFile = (JsonNode) Json.parse(new FileReader("dummy.json"));
         
         try {
-            String fileInString = FileUtils.readFileToString(new File("dummy.txt"));
+            String fileInString = FileUtils.readFileToString(new File("dummy.json"));
             JsonNode objectFromJsonFile = (JsonNode) Json.parse(fileInString);
             return ok(Json.toJson(objectFromJsonFile));
 
