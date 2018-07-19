@@ -154,7 +154,15 @@ public class HuntController extends Controller {
 
         //JSONObject objectFromJsonFile = (JSONObject) parser.parse(new FileReader("dummy.json"));
         //JsonNode objectFromJsonFile = (JsonNode) Json.parse(new FileReader("dummy.json"));
-        
+        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+        response().setHeader("Allow", request().getHeader("Origin"));   
+        response().setHeader("Origin", request().getHeader("Origin"));
+        response().setHeader("Access-Control-Max-Age", "36000");
+        response().setHeader("Access-Control-Allow-Credentials","true");
+        response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
+
+
         try {
             String fileInString = FileUtils.readFileToString(new File("dummy.json"));
             JsonNode objectFromJsonFile = (JsonNode) Json.parse(fileInString);
