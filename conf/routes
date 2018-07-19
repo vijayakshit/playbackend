@@ -2,9 +2,10 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-OPTIONS /login                               controllers.Application.preflight()
+OPTIONS  /                               controllers.Application.preflight(path: String ?= "")
+OPTIONS  /*path                         controllers.Application.preflight(path)
 
-OPTIONS /getit                               controllers.Application.preflight()
+#OPTIONS /getit                               controllers.Application.preflight()
 
 
 

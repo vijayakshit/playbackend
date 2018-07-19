@@ -54,4 +54,13 @@ public class Application extends Controller {
         return ok();
     }
 
+    public static Result preflight(String path) {
+        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+        response().setHeader("Allow", request().getHeader("Origin"));    
+        response().setHeader("Access-Control-Allow-Credentials","true");
+        response().setHeader("Access-Control-Allow-Methods", "POST, PUT, DELETE, OPTIONS");
+        response().setHeader("Access-Control-Allow-Headers", "Content-Type, Accept, X-Requested-With, remember-me");
+        return ok();
+    }
+
 }
