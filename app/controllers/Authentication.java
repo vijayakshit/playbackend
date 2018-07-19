@@ -134,15 +134,14 @@ public class Authentication extends Controller{
         response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", request().getHeader("Origin"));   
         response().setHeader("Origin", request().getHeader("Origin"));
-        response().setHeader("Access-Control-Max-Age", "36000");
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
         response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
             
-        ctx.session().put("loggedinstatus", "false");
-        ctx.session().put("user", null);
-        ctx.session().put("loggedinvalidity", "0");
-        ctx.session().put("lastactivevalidity","0");
+        session().put("loggedinstatus", "false");
+        session().put("user", null);
+        session().put("loggedinvalidity", "0");
+        session().put("lastactivevalidity","0");
 
         //If already logged out Respond Accordingly
         // if(!AuthorizarionValidator.validate(ctx)){
@@ -156,7 +155,7 @@ public class Authentication extends Controller{
         //Clear the Session cookies
         
         responseJson.put("status", "Logout is a Sucess");
-        System.out.println(ctx.session());
+        System.out.println(session());
         return ok(Json.toJson(responseJson));   
     }
 
