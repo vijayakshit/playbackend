@@ -131,7 +131,7 @@ public class Authentication extends Controller{
             }
         };
 
-response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", request().getHeader("Origin"));   
         response().setHeader("Origin", request().getHeader("Origin"));
         response().setHeader("Access-Control-Max-Age", "36000");
@@ -141,7 +141,7 @@ response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"
 
 
         //If already logged out Respond Accordingly
-        if(ctx.session().get("loggedinstatus") == null){
+        if(!AuthorizarionValidator.validate(ctx)){
             ctx.session().clear();
             responseJson.put("status", "Already Logged Out");
             return badRequest(Json.toJson(responseJson));
