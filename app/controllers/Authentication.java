@@ -142,16 +142,17 @@ public class Authentication extends Controller{
 
         //If already logged out Respond Accordingly
         if(!AuthorizarionValidator.validate(ctx)){
-            ctx.session().clear();
+            session().clear();
             System.out.println(ctx.session());
             responseJson.put("status", "Already Logged Out");
-            return badRequest(Json.toJson(responseJson));
+            return ok(Json.toJson(responseJson));
 
         } 
         //Else
         //Clear the Session cookies
-        ctx.session().clear();
+        session().clear();
         responseJson.put("status", "Logout is a Sucess");
+        System.out.println(ctx.session());
         return ok(Json.toJson(responseJson));   
     }
 
