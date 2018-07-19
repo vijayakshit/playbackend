@@ -146,11 +146,16 @@ public class Authentication extends Controller{
 
         Context ctx = Context.current();
         String user = ctx.session().get("user");
-        // if(ctx.session().get("loggedinstatus") == null){
-        //     ctx.session().clear();
-        //     responseJson.put("status", "Already Logged Out");
-        //     return badRequest(Json.toJson(responseJson));
-        // } 
+
+        
+        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+        response().setHeader("Allow", request().getHeader("Origin"));   
+        response().setHeader("Origin", request().getHeader("Origin"));
+        response().setHeader("Access-Control-Max-Age", "36000");
+        response().setHeader("Access-Control-Allow-Credentials","true");
+        response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
+        
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
                 put("user", user );
