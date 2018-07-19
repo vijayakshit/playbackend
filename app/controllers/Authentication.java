@@ -122,7 +122,7 @@ public class Authentication extends Controller{
         //Get the Context and JSON input
         Context ctx = Context.current();
         JsonNode json = request().body().asJson();
-
+        System.out.println(ctx.session());
 
         //Creating the response Object               
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
@@ -143,6 +143,7 @@ public class Authentication extends Controller{
         //If already logged out Respond Accordingly
         if(!AuthorizarionValidator.validate(ctx)){
             ctx.session().clear();
+            System.out.println(ctx.session());
             responseJson.put("status", "Already Logged Out");
             return badRequest(Json.toJson(responseJson));
 
