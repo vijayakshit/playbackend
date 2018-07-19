@@ -58,6 +58,7 @@ public class Authentication extends Controller{
         //Respond with Bad Request if username/password is not found
         String username = json.findPath("username").textValue();
         String password = json.findPath("password").textValue();    
+        
         if(username == null||password == null) {
             responseJson.put("status", "Missing username or password");
             return badRequest(Json.toJson(responseJson));
@@ -122,6 +123,7 @@ public class Authentication extends Controller{
         Context ctx = Context.current();
         JsonNode json = request().body().asJson();
 
+
         //Creating the response Object               
         HashMap<String, Object> responseJson = new HashMap<String, Object>(){
             {
@@ -129,6 +131,13 @@ public class Authentication extends Controller{
             }
         };
 
+        response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
+        response().setHeader("Allow", request().getHeader("Origin"));   
+        response().setHeader("Origin", request().getHeader("Origin"));
+        response().setHeader("Access-Control-Max-Age", "36000");
+        response().setHeader("Access-Control-Allow-Credentials","true");
+        response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+        response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
 
 
         //If already logged out Respond Accordingly
@@ -145,12 +154,16 @@ public class Authentication extends Controller{
         return ok(Json.toJson(responseJson));   
     }
 
-    @Security.Authenticated(Secured.class)
+    
     public static Result isauth(){
 
         Context ctx = Context.current();
-        String user = ctx.session().get("user");
-
+        
+        HashMap<String, Object> responseJson = new HashMap<String, Object>(){
+            {
+                put("status", "Is Not Logged In");
+            }
+        };
         
         response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", request().getHeader("Origin"));   
@@ -160,12 +173,22 @@ public class Authentication extends Controller{
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
         response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
 
-        HashMap<String, Object> responseJson = new HashMap<String, Object>(){
-            {
-                put("user", user );
-            }
-        };
+        if(AuthorizarionValidator.validate(ctx))    
+        {
+
+            
+            String user = ctx.session().get("user");
+
+            responseJson.put("status", "Is Logged In");
+            responseJson.put("user", user );
+        
+            return ok(Json.toJson(responseJson));
+            
+           
+        }
+
+        
         System.out.println(ctx.session());
-        return ok(Json.toJson(responseJson)); 
+        return unAuthorized(Json.toJson(responseJson)); 
     }
 } 
