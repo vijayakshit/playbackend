@@ -157,7 +157,6 @@ public class HuntController extends Controller {
         response().setHeader("Access-Control-Allow-Origin", request().getHeader("Origin"));
         response().setHeader("Allow", request().getHeader("Origin"));   
         response().setHeader("Origin", request().getHeader("Origin"));
-        response().setHeader("Access-Control-Max-Age", "36000");
         response().setHeader("Access-Control-Allow-Credentials","true");
         response().setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
         response().setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent");
@@ -166,12 +165,14 @@ public class HuntController extends Controller {
         try {
             String fileInString = FileUtils.readFileToString(new File("dummy.json"));
             JsonNode objectFromJsonFile = (JsonNode) Json.parse(fileInString);
+            System.out.println(response());
             return ok(Json.toJson(objectFromJsonFile));
 
           } catch (Exception e) {
 
              e.printStackTrace();
          }
+         System.out.println(response());
 
         return ok();
 
